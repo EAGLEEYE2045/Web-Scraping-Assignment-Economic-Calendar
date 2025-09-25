@@ -1,0 +1,8 @@
+venv/
+__pycache__/
+economic-frontend/node_modules/
+economic-frontend/build/
+__pycache__/
+*.log
+.env
+.vscode/
