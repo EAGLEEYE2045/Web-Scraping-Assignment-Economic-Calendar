@@ -1,37 +1,74 @@
-# Web-Scraping-Assignment-Economic-Calendar
-Web scrapper
+# 📊 Web-Scraping-Assignment-Economic-Calendar
 
-How to start the project:
+A **Web Scraper + Frontend** project to extract and visualize economic calendar data.  
+This project consists of two main parts:
+1. **Backend** (FastAPI for scraping and API serving)
+2. **Frontend** (React app for displaying data)
 
-#1 Start the Virtual server
-python -m venv venv ( to make virtual server)
-./venv/scripts/activate ( to init virtual server )
+---
 
-#2 Install all the requirements using 
-pip install -r requirements.txt
+## 🚀 Getting Started
 
-#3 Start the the server using
-uvicorn api:app --reload  
+### 1️⃣ Backend Setup
+1. Create a virtual environment:
+   ```bash
+   python -m venv venv
+   ```
 
-#4 Open another terminal to start frontend
+2. Activate the environment:
+   - **Windows**:
+     ```bash
+     ./venv/Scripts/activate
+     ```
+   - **Mac/Linux**:
+     ```bash
+     source venv/bin/activate
+     ```
 
-#5 Navigate to your frontend folder
-cd path\to\your\repo\economic-frontend
+3. Install requirements:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-#6 Install dependencies
-npm install
+4. Start the FastAPI server:
+   ```bash
+   uvicorn api:app --reload
+   ```
 
-#7 Start the development server
-npm start
+---
 
-NOTE: If you only wish to get csv file just run scraper file
+### 2️⃣ Frontend Setup
+1. Open a **new terminal**.
 
+2. Navigate to the frontend directory:
+   ```bash
+   cd path/to/your/repo/economic-frontend
+   ```
 
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-For TASK SCHEDULER
-## 🔄 Schedule Frontend to Run Every Day at 7 AM (Windows)
+4. Start the React development server:
+   ```bash
+   npm start
+   ```
 
-### Steps:
+---
+
+### ⚡ CSV Only (Without Frontend)
+If you only need the **CSV file**, simply run the scraper file:
+```bash
+python scraper.py
+```
+
+---
+
+## 🕒 Task Scheduler Setup (Windows)
+
+### 🔄 Schedule Frontend to Run Every Day at 7 AM
+
 1. Open **Task Scheduler**  
    - Press `Win + R`, type `taskschd.msc`, and press **Enter**.  
    - Click **Create Basic Task...**
@@ -39,11 +76,11 @@ For TASK SCHEDULER
 2. Name your task  
    Example: `Start Economic Frontend`.
 
-3. Set the **trigger**  
+3. Set the **Trigger**  
    - Choose **Daily**.  
    - Set the start time to `7:00 AM`.
 
-4. Set the **action**  
+4. Set the **Action**  
    - Choose **Start a program**.  
    - In **Program/script**, enter:
      ```powershell
@@ -58,10 +95,23 @@ For TASK SCHEDULER
    - Click **Finish**.  
    - Right-click your task → **Run** to test.
 
-### ✅ Notes
+---
+
+## ✅ Notes
 - Ensure **Node.js** and **npm** are installed.  
 - Replace `C:\path\to\economic-frontend` with the correct path on your machine.  
-- Remove `-NoExit` if you don’t want the PowerShell window to stay open.  
+- Remove `-NoExit` if you don’t want the PowerShell window to remain open.  
 - To log output, you can modify the command:
   ```powershell
   -NoExit -Command "cd 'C:\path\to\economic-frontend'; npm start *> log.txt 2>&1"
+  ```
+
+---
+
+## 🛠️ Tech Stack
+- **Backend:** Python, FastAPI, Uvicorn  
+- **Frontend:** React, Node.js  
+- **Task Scheduling:** Windows Task Scheduler  
+
+---
+✨ Happy Scraping & Visualizing!
