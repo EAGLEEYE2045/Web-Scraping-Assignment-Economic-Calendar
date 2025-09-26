@@ -25,3 +25,43 @@ npm install
 npm start
 
 NOTE: If you only wish to get csv file just run scraper file
+
+
+
+For TASK SCHEDULER
+## 🔄 Schedule Frontend to Run Every Day at 7 AM (Windows)
+
+### Steps:
+1. Open **Task Scheduler**  
+   - Press `Win + R`, type `taskschd.msc`, and press **Enter**.  
+   - Click **Create Basic Task...**
+
+2. Name your task  
+   Example: `Start Economic Frontend`.
+
+3. Set the **trigger**  
+   - Choose **Daily**.  
+   - Set the start time to `7:00 AM`.
+
+4. Set the **action**  
+   - Choose **Start a program**.  
+   - In **Program/script**, enter:
+     ```powershell
+     powershell.exe
+     ```
+   - In **Add arguments**, enter (replace with your project path):
+     ```powershell
+     -NoExit -Command "cd 'C:\path\to\economic-frontend'; npm start"
+     ```
+
+5. Finish setup  
+   - Click **Finish**.  
+   - Right-click your task → **Run** to test.
+
+### ✅ Notes
+- Ensure **Node.js** and **npm** are installed.  
+- Replace `C:\path\to\economic-frontend` with the correct path on your machine.  
+- Remove `-NoExit` if you don’t want the PowerShell window to stay open.  
+- To log output, you can modify the command:
+  ```powershell
+  -NoExit -Command "cd 'C:\path\to\economic-frontend'; npm start *> log.txt 2>&1"
