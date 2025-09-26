@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from test import scrape_economic_calendar
+from scraper import scrape_economic_calendar
 import threading, time
 import asyncio, sys
 from fastapi.middleware.cors import CORSMiddleware

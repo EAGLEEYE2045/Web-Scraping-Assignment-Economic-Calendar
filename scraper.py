@@ -20,14 +20,14 @@ def scrape_economic_calendar(save_csv: bool = False):
     try:
         # Accept cookies popup if it appears
         try:
-            WebDriverWait(driver, 5).until(
+            WebDriverWait(driver, 2).until(
                 EC.element_to_be_clickable((By.ID, "onetrust-accept-btn-handler"))
             ).click()
         except:
             pass  
 
         # Click "This Week" tab
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 5).until(
             EC.element_to_be_clickable((By.ID, "timeFrame_thisWeek"))
         ).click()
 
@@ -50,7 +50,15 @@ def scrape_economic_calendar(save_csv: bool = False):
         rows = table.find_elements(By.TAG_NAME, "tr")
 
         data = []
+        current_day = None  # track current day header
+
         for row in rows:
+            # Detect day row (colspan + class "theDay")
+            day_cell = row.find_elements(By.CLASS_NAME, "theDay")
+            if day_cell:
+                current_day = day_cell[0].text.strip()
+                continue
+
             cols = row.find_elements(By.TAG_NAME, "td")
             if len(cols) < 7:
                 continue
@@ -59,16 +67,21 @@ def scrape_economic_calendar(save_csv: bool = False):
             currency = cols[1].text.strip()
             impact = cols[2].get_attribute("title") or cols[2].text.strip()
 
-            # Event name + link
-            event_link_elem = cols[3].find_element(By.TAG_NAME, "a")
-            event = event_link_elem.text.strip()
-            event_link = event_link_elem.get_attribute("href")
+            # Event + link
+            try:
+                event_link_elem = cols[3].find_element(By.TAG_NAME, "a")
+                event = event_link_elem.text.strip()
+                event_link = event_link_elem.get_attribute("href")
+            except:
+                event = cols[3].text.strip()
+                event_link = ""
 
             actual = cols[4].text.strip()
             forecast = cols[5].text.strip()
             previous = cols[6].text.strip()
 
             data.append({
+                "Day": current_day,   # ✅ attach correct day
                 "Time": time_,
                 "Currency": currency,
                 "Impact": impact,
