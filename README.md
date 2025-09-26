@@ -7,7 +7,7 @@ How to start the project:
 python -m venv venv ( to make virtual server)
 ./venv/scripts/activate ( to init virtual server )
 
-2# Install all the requirements using 
+#2 Install all the requirements using 
 pip install -r requirements.txt
 
 #3 Start the the server using
